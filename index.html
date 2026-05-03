@@ -5,52 +5,65 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Texas State Roleplay | FiveM</title>
     <style>
-        /* Color Palette */
+        /* Color Palette and Asset Definition */
         :root {
             --texas-blue: #002868;
             --texas-red: #BF0A30;
-            --dark-bg: #121212;
+            --main-bg: #121212; /* Fallback color */
+            --header-overlay: rgba(10, 10, 10, 0.7); /* Dark mask for readability */
             --card-bg: #1e1e1e;
             --text-light: #f4f4f4;
+            --text-dark: #333;
         }
 
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             margin: 0;
-            background-color: var(--dark-bg);
+            background-color: var(--main-bg);
             color: var(--text-light);
             line-height: 1.6;
+            background-image: url('txrpbg.png');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed; /* Parallax effect */
         }
 
-        /* Clean Header without Background Image */
+        /* Responsive Header with Integrated Background and Mask */
         header {
-            background-color: #0a0a0a;
-            height: 50vh;
+            background-color: var(--header-overlay);
+            height: 60vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             text-align: center;
-            border-bottom: 3px solid var(--texas-red);
+            border-bottom: 5px solid var(--texas-red);
+            padding: 0 20px; /* Padding for small screens */
         }
 
         .hero-h1 {
-            font-size: 4rem;
+            font-size: clamp(2rem, 8vw, 4rem); /* Responsive typography */
             margin: 0;
             text-transform: uppercase;
             letter-spacing: 2px;
+            font-weight: 800;
         }
 
         .hero-h1 span { color: var(--texas-red); }
 
         .tagline {
-            color: #888;
-            font-size: 1.2rem;
-            margin-top: 10px;
+            color: #ccc; /* Slightly dimmer for contrast */
+            font-size: clamp(1rem, 4vw, 1.3rem);
+            margin-top: 15px;
+            max-width: 600px;
         }
 
         .btn-container {
-            margin-top: 30px;
+            margin-top: 40px;
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap; /* Wraps on mobile */
+            justify-content: center;
         }
 
         .btn {
@@ -59,46 +72,91 @@
             border-radius: 4px;
             font-weight: bold;
             text-transform: uppercase;
-            transition: 0.3s;
-            margin: 0 10px;
+            transition: all 0.3s ease;
             display: inline-block;
         }
 
-        .btn-join { background-color: var(--texas-blue); color: white; }
-        .btn-discord { border: 2px solid #7289da; color: #7289da; }
+        .btn-join { 
+            background-color: var(--texas-blue); 
+            color: white; 
+            border: 2px solid var(--texas-blue);
+        }
+        .btn-discord { 
+            border: 2px solid #7289da; 
+            color: #7289da; 
+            background-color: transparent;
+        }
         
-        .btn-join:hover { background-color: #003da1; transform: translateY(-2px); }
-        .btn-discord:hover { background: #7289da; color: white; transform: translateY(-2px); }
+        .btn-join:hover { 
+            background-color: #003da1; 
+            border-color: #003da1;
+            transform: translateY(-3px); 
+        }
+        .btn-discord:hover { 
+            background: #7289da; 
+            color: white; 
+            transform: translateY(-3px); 
+        }
 
         .container {
             max-width: 1000px;
-            margin: 60px auto;
+            margin: 80px auto;
             padding: 0 20px;
+            background-color: rgba(18, 18, 18, 0.9); /* Adds a slight mask to main content area */
+            padding-top: 40px;
+            padding-bottom: 40px;
+            border-radius: 10px;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-header h2 {
+            font-size: 2.5rem;
+            color: var(--texas-red);
         }
 
         .features {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 25px;
-            margin-top: 50px;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
         }
 
         .card {
             background: var(--card-bg);
-            padding: 30px;
+            padding: 35px;
             border-radius: 8px;
-            transition: 0.3s;
+            transition: all 0.3s ease;
+            border: 1px solid transparent;
         }
 
-        .card:hover { border-top: 3px solid var(--texas-blue); }
-        .card h3 { color: var(--texas-red); margin-top: 0; }
+        .card:hover { 
+            border-top: 4px solid var(--texas-blue); 
+            transform: translateY(-5px);
+            background-color: #252525;
+        }
+        
+        .card h3 { 
+            color: var(--texas-blue); /* Updated for better contrast on card-bg */
+            margin-top: 0; 
+            font-size: 1.5rem;
+        }
 
         footer {
             text-align: center;
-            padding: 50px;
-            background: #050505;
+            padding: 60px;
+            background: rgba(5, 5, 5, 0.95);
             font-size: 0.85rem;
-            color: #444;
+            color: #555;
+            margin-top: 80px;
+        }
+
+        /* Simple Responsive Adjustments */
+        @media (max-width: 600px) {
+            header { height: 70vh; }
+            .container { margin: 40px auto; }
         }
     </style>
 </head>
@@ -106,7 +164,7 @@
 
     <header>
         <h1 class="hero-h1">Texas State <span>Roleplay</span></h1>
-        <p class="tagline">Realistic Roleplay. Deeply Immersion. Lone Star Pride.</p>
+        <p class="tagline">Authentic Roleplay. Lone Star Pride.</p>
         <div class="btn-container">
             <a href="fivem://connect/YOUR_IP" class="btn btn-join">Connect Now</a>
             <a href="https://discord.gg/YOUR_INVITE" class="btn btn-discord">Discord</a>
@@ -114,29 +172,29 @@
     </header>
 
     <div class="container">
-        <section style="text-align: center;">
+        <section class="section-header">
             <h2>Experience Texas Like Never Before</h2>
-            <p>TSRP offers a serious environment for those looking for quality interactions. Our server is built on high-performance hardware to ensure your pursuit or medical emergency isn't interrupted by lag.</p>
+            <p>TSRP offers a serious environment for those looking for quality interactions. We run on advanced frameworks to ensure your pursuit, rescue, or operation is smooth.</p>
         </section>
 
         <div class="features">
             <div class="card">
                 <h3>Texas DPS</h3>
-                <p>Join the Department of Public Safety. We utilize realistic liveries, uniforms, and radio codes.</p>
+                <p>Join the Department of Public Safety. Experience realistic procedures, detailed livery, and full radio operability.</p>
             </div>
             <div class="card">
-                <h3>Player Economy</h3>
-                <p>From owning local businesses to managing legal and illegal enterprises, the economy is in your hands.</p>
+                <h3>Dynamic Economy</h3>
+                <p>From establishing local businesses to complex trade and custom jobs, our citizen-driven economy awaits.</p>
             </div>
             <div class="card">
-                <h3>Custom Scripts</h3>
-                <p>Enjoy unique features like advanced medical systems, custom housing, and interactive jobs.</p>
+                <h3>Custom Systems</h3>
+                <p>Enjoy unique scripts like advanced medical intervention, modular housing, and interactive crafting systems.</p>
             </div>
         </div>
     </div>
 
     <footer>
-        <p>&copy; 2026 Texas State Roleplay | Built for the Community</p>
+        <p>&copy; 2026 Texas State Roleplay | Built for the Lone Star Community | FiveM Community</p>
     </footer>
 
 </body>
