@@ -5,197 +5,161 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Texas State Roleplay | FiveM</title>
     <style>
-        /* Color Palette and Asset Definition */
         :root {
             --texas-blue: #002868;
             --texas-red: #BF0A30;
-            --main-bg: #121212; /* Fallback color */
-            --header-overlay: rgba(10, 10, 10, 0.7); /* Dark mask for readability */
-            --card-bg: #1e1e1e;
-            --text-light: #f4f4f4;
-            --text-dark: #333;
+            --glass: rgba(18, 18, 18, 0.85);
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Segoe UI', sans-serif;
             margin: 0;
-            background-color: var(--main-bg);
-            color: var(--text-light);
-            line-height: 1.6;
-            background-image: url('txrpbg.png');
+            color: #f4f4f4;
+            /* This ensures the background covers the screen without stretching weirdly */
+            background: url('txrpbg.png') no-repeat center center fixed;
             background-size: cover;
-            background-position: center;
-            background-attachment: fixed; /* Parallax effect */
+            overflow-x: hidden;
         }
 
-        /* Responsive Header with Integrated Background and Mask */
+        /* Overlay to darken the background slightly for readability */
+        .overlay {
+            background: rgba(0, 0, 0, 0.4);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
         header {
-            background-color: var(--header-overlay);
-            height: 60vh;
+            height: 65vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             text-align: center;
-            border-bottom: 5px solid var(--texas-red);
-            padding: 0 20px; /* Padding for small screens */
+            padding: 20px;
         }
 
         .hero-h1 {
-            font-size: clamp(2rem, 8vw, 4rem); /* Responsive typography */
-            margin: 0;
+            font-size: clamp(2.5rem, 7vw, 4.5rem);
             text-transform: uppercase;
-            letter-spacing: 2px;
-            font-weight: 800;
+            font-weight: 900;
+            margin: 0;
+            text-shadow: 2px 4px 10px rgba(0,0,0,0.8);
         }
 
         .hero-h1 span { color: var(--texas-red); }
 
         .tagline {
-            color: #ccc; /* Slightly dimmer for contrast */
-            font-size: clamp(1rem, 4vw, 1.3rem);
-            margin-top: 15px;
-            max-width: 600px;
+            font-size: 1.2rem;
+            letter-spacing: 1px;
+            background: rgba(0,0,0,0.5);
+            padding: 5px 15px;
+            border-radius: 5px;
         }
 
         .btn-container {
-            margin-top: 40px;
+            margin-top: 30px;
             display: flex;
-            gap: 15px;
-            flex-wrap: wrap; /* Wraps on mobile */
-            justify-content: center;
+            gap: 20px;
         }
 
         .btn {
             text-decoration: none;
-            padding: 14px 35px;
+            padding: 15px 40px;
             border-radius: 4px;
             font-weight: bold;
             text-transform: uppercase;
-            transition: all 0.3s ease;
-            display: inline-block;
+            transition: 0.3s;
         }
 
-        .btn-join { 
-            background-color: var(--texas-blue); 
-            color: white; 
-            border: 2px solid var(--texas-blue);
-        }
-        .btn-discord { 
-            border: 2px solid #7289da; 
-            color: #7289da; 
-            background-color: transparent;
-        }
-        
-        .btn-join:hover { 
-            background-color: #003da1; 
-            border-color: #003da1;
-            transform: translateY(-3px); 
-        }
-        .btn-discord:hover { 
-            background: #7289da; 
-            color: white; 
-            transform: translateY(-3px); 
+        .btn-join { background: var(--texas-blue); color: white; box-shadow: 0 4px 15px rgba(0,40,104,0.4); }
+        .btn-discord { background: #7289da; color: white; box-shadow: 0 4px 15px rgba(114,137,218,0.4); }
+        .btn:hover { transform: translateY(-3px); filter: brightness(1.2); }
+
+        /* The "Glass" container for the info boxes */
+        .content-section {
+            background: var(--glass);
+            backdrop-filter: blur(10px); /* Blurs the background behind the box */
+            -webkit-backdrop-filter: blur(10px);
+            border-top: 4px solid var(--texas-red);
+            padding: 60px 20px;
         }
 
         .container {
-            max-width: 1000px;
-            margin: 80px auto;
-            padding: 0 20px;
-            background-color: rgba(18, 18, 18, 0.9); /* Adds a slight mask to main content area */
-            padding-top: 40px;
-            padding-bottom: 40px;
-            border-radius: 10px;
-        }
-
-        .section-header {
-            text-align: center;
-            margin-bottom: 50px;
-        }
-
-        .section-header h2 {
-            font-size: 2.5rem;
-            color: var(--texas-red);
+            max-width: 1100px;
+            margin: 0 auto;
         }
 
         .features {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 30px;
+            margin-top: 40px;
         }
 
         .card {
-            background: var(--card-bg);
-            padding: 35px;
-            border-radius: 8px;
-            transition: all 0.3s ease;
-            border: 1px solid transparent;
+            background: rgba(255, 255, 255, 0.05);
+            padding: 30px;
+            border-radius: 10px;
+            border: 1px solid rgba(255,255,255,0.1);
         }
 
-        .card:hover { 
-            border-top: 4px solid var(--texas-blue); 
-            transform: translateY(-5px);
-            background-color: #252525;
-        }
-        
         .card h3 { 
-            color: var(--texas-blue); /* Updated for better contrast on card-bg */
+            color: var(--texas-red); 
             margin-top: 0; 
-            font-size: 1.5rem;
+            text-transform: uppercase;
         }
 
         footer {
             text-align: center;
-            padding: 60px;
-            background: rgba(5, 5, 5, 0.95);
-            font-size: 0.85rem;
-            color: #555;
-            margin-top: 80px;
-        }
-
-        /* Simple Responsive Adjustments */
-        @media (max-width: 600px) {
-            header { height: 70vh; }
-            .container { margin: 40px auto; }
+            padding: 40px;
+            background: #000;
+            font-size: 0.8rem;
+            color: #666;
         }
     </style>
 </head>
 <body>
 
-    <header>
-        <h1 class="hero-h1">Texas State <span>Roleplay</span></h1>
-        <p class="tagline">Authentic Roleplay. Lone Star Pride.</p>
-        <div class="btn-container">
-            <a href="fivem://connect/YOUR_IP" class="btn btn-join">Connect Now</a>
-            <a href="https://discord.gg/YOUR_INVITE" class="btn btn-discord">Discord</a>
-        </div>
-    </header>
+    <div class="overlay">
+        <header>
+            <h1 class="hero-h1">Texas State <span>Roleplay</span></h1>
+            <p class="tagline">Authentic Roleplay • EST. 2026</p>
+            
+            <div class="btn-container">
+                <a href="fivem://connect/YOUR_IP" class="btn btn-join">Join Server</a>
+                <a href="https://discord.gg/YOUR_INVITE" class="btn btn-discord">Discord</a>
+            </div>
+        </header>
 
-    <div class="container">
-        <section class="section-header">
-            <h2>Experience Texas Like Never Before</h2>
-            <p>TSRP offers a serious environment for those looking for quality interactions. We run on advanced frameworks to ensure your pursuit, rescue, or operation is smooth.</p>
+        <section class="content-section">
+            <div class="container">
+                <div style="text-align: center; margin-bottom: 40px;">
+                    <h2 style="font-size: 2.5rem; margin: 0;">LONE STAR PRIDE</h2>
+                    <p style="color: #bbb;">Join the most immersive Texas-based community on FiveM.</p>
+                </div>
+
+                <div class="features">
+                    <div class="card">
+                        <h3>Texas DPS</h3>
+                        <p>High-quality law enforcement roleplay with custom vehicles, uniforms, and a dedicated command staff.</p>
+                    </div>
+                    <div class="card">
+                        <h3>Civilian Life</h3>
+                        <p>From trucking to street racing, our civilian life is packed with custom jobs and activities.</p>
+                    </div>
+                    <div class="card">
+                        <h3>Serious RP</h3>
+                        <p>We prioritize quality over quantity. Our rules ensure every interaction is meaningful.</p>
+                    </div>
+                </div>
+            </div>
         </section>
 
-        <div class="features">
-            <div class="card">
-                <h3>Texas DPS</h3>
-                <p>Join the Department of Public Safety. Experience realistic procedures, detailed livery, and full radio operability.</p>
-            </div>
-            <div class="card">
-                <h3>Dynamic Economy</h3>
-                <p>From establishing local businesses to complex trade and custom jobs, our citizen-driven economy awaits.</p>
-            </div>
-            <div class="card">
-                <h3>Custom Systems</h3>
-                <p>Enjoy unique scripts like advanced medical intervention, modular housing, and interactive crafting systems.</p>
-            </div>
-        </div>
+        <footer>
+            &copy; 2026 TXRP COMMUNITY | Not affiliated with Rockstar Games.
+        </footer>
     </div>
-
-    <footer>
-        <p>&copy; 2026 Texas State Roleplay | Built for the Lone Star Community | FiveM Community</p>
-    </footer>
 
 </body>
 </html>
