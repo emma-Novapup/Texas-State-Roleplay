@@ -8,20 +8,18 @@
         :root {
             --texas-blue: #002868;
             --texas-red: #BF0A30;
-            --glass: rgba(18, 18, 18, 0.85);
+            --glass: rgba(18, 18, 18, 0.9);
         }
 
         body {
             font-family: 'Segoe UI', sans-serif;
             margin: 0;
             color: #f4f4f4;
-            /* This ensures the background covers the screen without stretching weirdly */
             background: url('txrpbg.png') no-repeat center center fixed;
             background-size: cover;
             overflow-x: hidden;
         }
 
-        /* Overlay to darken the background slightly for readability */
         .overlay {
             background: rgba(0, 0, 0, 0.4);
             min-height: 100vh;
@@ -50,11 +48,14 @@
         .hero-h1 span { color: var(--texas-red); }
 
         .tagline {
-            font-size: 1.2rem;
-            letter-spacing: 1px;
-            background: rgba(0,0,0,0.5);
-            padding: 5px 15px;
-            border-radius: 5px;
+            font-size: 1.1rem;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            background: rgba(0,0,0,0.6);
+            padding: 8px 20px;
+            border-radius: 3px;
+            margin-top: 10px;
+            border-left: 3px solid var(--texas-red);
         }
 
         .btn-container {
@@ -76,13 +77,12 @@
         .btn-discord { background: #7289da; color: white; box-shadow: 0 4px 15px rgba(114,137,218,0.4); }
         .btn:hover { transform: translateY(-3px); filter: brightness(1.2); }
 
-        /* The "Glass" container for the info boxes */
         .content-section {
             background: var(--glass);
-            backdrop-filter: blur(10px); /* Blurs the background behind the box */
-            -webkit-backdrop-filter: blur(10px);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
             border-top: 4px solid var(--texas-red);
-            padding: 60px 20px;
+            padding: 80px 20px;
         }
 
         .container {
@@ -98,16 +98,23 @@
         }
 
         .card {
-            background: rgba(255, 255, 255, 0.05);
-            padding: 30px;
+            background: rgba(255, 255, 255, 0.03);
+            padding: 35px;
             border-radius: 10px;
-            border: 1px solid rgba(255,255,255,0.1);
+            border: 1px solid rgba(255,255,255,0.05);
+            transition: 0.3s;
+        }
+
+        .card:hover {
+            background: rgba(255, 255, 255, 0.07);
+            border-color: var(--texas-blue);
         }
 
         .card h3 { 
             color: var(--texas-red); 
             margin-top: 0; 
             text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
         footer {
@@ -115,7 +122,7 @@
             padding: 40px;
             background: #000;
             font-size: 0.8rem;
-            color: #666;
+            color: #555;
         }
     </style>
 </head>
@@ -124,7 +131,7 @@
     <div class="overlay">
         <header>
             <h1 class="hero-h1">Texas State <span>Roleplay</span></h1>
-            <p class="tagline">Authentic Roleplay • EST. 2026</p>
+            <p class="tagline">The Standard of Southern Excellence • EST. 2026</p>
             
             <div class="btn-container">
                 <a href="fivem://connect/YOUR_IP" class="btn btn-join">Join Server</a>
@@ -134,30 +141,30 @@
 
         <section class="content-section">
             <div class="container">
-                <div style="text-align: center; margin-bottom: 40px;">
-                    <h2 style="font-size: 2.5rem; margin: 0;">LONE STAR PRIDE</h2>
-                    <p style="color: #bbb;">Join the most immersive Texas-based community on FiveM.</p>
+                <div style="text-align: center; margin-bottom: 50px;">
+                    <h2 style="font-size: 2.5rem; margin: 0; text-transform: uppercase;">A New Frontier</h2>
+                    <p style="color: #888; max-width: 700px; margin: 15px auto;">Join a high-performance FiveM community dedicated to serious, immersive, and respectful roleplay in the heart of Texas.</p>
                 </div>
 
                 <div class="features">
                     <div class="card">
-                        <h3>Texas DPS</h3>
-                        <p>High-quality law enforcement roleplay with custom vehicles, uniforms, and a dedicated command staff.</p>
+                        <h3>State Law Enforcement</h3>
+                        <p>Apply for our professional departments featuring custom vehicle fleets, realistic SOPs, and advanced equipment.</p>
                     </div>
                     <div class="card">
-                        <h3>Civilian Life</h3>
-                        <p>From trucking to street racing, our civilian life is packed with custom jobs and activities.</p>
+                        <h3>Detailed Environment</h3>
+                        <p>Explore a meticulously curated map with custom interiors, active businesses, and a stable 60+ FPS experience.</p>
                     </div>
                     <div class="card">
-                        <h3>Serious RP</h3>
-                        <p>We prioritize quality over quantity. Our rules ensure every interaction is meaningful.</p>
+                        <h3>Community Driven</h3>
+                        <p>We listen to our players. Regular updates, fair staff, and a transparent development process define TSRP.</p>
                     </div>
                 </div>
             </div>
         </section>
 
         <footer>
-            &copy; 2026 TXRP COMMUNITY | Not affiliated with Rockstar Games.
+            &copy; 2026 TEXAS STATE ROLEPLAY | All Rights Reserved | Not affiliated with Rockstar Games or Take-Two Interactive.
         </footer>
     </div>
 
